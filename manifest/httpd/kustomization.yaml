@@ -5,15 +5,15 @@ kind: Kustomization
 # Generator ConfigMap
 # Ketika index.html berubah, nama ConfigMap akan berubah (karena hash),
 # memicu Deployment untuk restart.
-configMapGenerator:
-  - name: httpd-index-html
-    files:
-      - index.html
-    options:
-      labels:
-        app: simple-httpd
-generatorOptions:
-  disableNameSuffixHash: false
+# configMapGenerator:
+#   - name: httpd-index-html
+#     files:
+#       - index.html
+#     options:
+#       labels:
+#         app: simple-httpd
+# generatorOptions:
+#   disableNameSuffixHash: false
 
 # Resource yang akan di-apply
 resources:
