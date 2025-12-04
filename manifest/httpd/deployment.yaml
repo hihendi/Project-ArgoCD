@@ -29,4 +29,4 @@ spec:
       volumes:
         - name: httpd-config
           configMap:
-            name: httpd-index-html # NAMA INI AKAN DIUBAH OLEH KUSTOMIZE
+            name: httpd-index # NAMA INI AKAN DIUBAH OLEH KUSTOMIZE
