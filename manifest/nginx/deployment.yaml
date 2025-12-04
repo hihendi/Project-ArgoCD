@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-nginx
-  namespace: web-argocd
+  namespace: argocd
   labels:
     app: simple-nginx
 spec:

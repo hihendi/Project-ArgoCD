@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: simple-httpd-svc
-  namespace: web-argocd
+  namespace: argocd
 spec:
   type: NodePort
   ports:
