@@ -1,0 +1,19 @@
+# manifests/httpd/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Resource yang akan di-apply
+resources:
+  - deployment.yaml
+  - service.yaml
+
+# Generator ConfigMap
+# Ketika index.html berubah, nama ConfigMap akan berubah (karena hash),
+# memicu Deployment untuk restart.
+configMapGenerator:
+  - name: httpd-index-html
+    files:
+      - index.html
+    options:
+      labels:
+        app: simple-httpd

@@ -1,0 +1,31 @@
+# manifests/nginx/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-nginx
+  namespace: web-argocd
+  labels:
+    app: simple-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-nginx
+  template:
+    metadata:
+      labels:
+        app: simple-nginx
+    spec:
+      # Volume akan diisi oleh ConfigMap yang dihasilkan oleh Kustomize
+      volumes:
+        - name: nginx-html-volume
+          configMap:
+            name: nginx-index-html # NAMA INI AKAN DIUBAH OLEH KUSTOMIZE
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-html-volume
+              mountPath: /usr/share/nginx/html
