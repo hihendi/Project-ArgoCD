@@ -5,11 +5,10 @@ kind: Kustomization
 bases:
   - nginx
   - httpd
-
-configMapGenerator:
-  - name: nginx-index-html
-    files:
-      - nginx/index.html
-  - name: httpd-index-html
-    files:
-      - httpd/index.html
+# configMapGenerator:
+#   - name: nginx-index-html
+#     files:
+#       - nginx/index.html
+#   - name: httpd-index-html
+#     files:
+#       - httpd/index.html

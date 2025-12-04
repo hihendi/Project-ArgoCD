@@ -2,17 +2,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+# Generator ConfigMap
+# Ketika index.html berubah, nama ConfigMap akan berubah (karena hash),
+# memicu Deployment untuk restart.
+configMapGenerator:
+  - name: nginx-index-html
+    files:
+      - index.html
+    options:
+      labels:
+        app: simple-nginx
+generatorOptions:
+  disableNameSuffixHash: false
+
 # Resource yang akan di-apply
 resources:
   - deployment.yaml
   - service.yaml
-# Generator ConfigMap
-# Ketika index.html berubah, nama ConfigMap akan berubah (karena hash),
-# memicu Deployment untuk restart.
-# configMapGenerator:
-#   - name: nginx-index-html
-#     files:
-#       - index.html
-#     options:
-#       labels:
-#         app: simple-nginx

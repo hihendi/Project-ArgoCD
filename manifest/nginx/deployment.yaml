@@ -16,16 +16,17 @@ spec:
       labels:
         app: simple-nginx
     spec:
-      # Volume akan diisi oleh ConfigMap yang dihasilkan oleh Kustomize
-      volumes:
-        - name: nginx-html-volume
-          configMap:
-            name: nginx-index-html # NAMA INI AKAN DIUBAH OLEH KUSTOMIZE
       containers:
         - name: nginx
           image: nginx:latest
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: nginx-html-volume
-              mountPath: /usr/share/nginx/html
+            - name: nginx-config
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      # Volume akan diisi oleh ConfigMap yang dihasilkan oleh Kustomize
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-index-html # NAMA INI AKAN DIUBAH OLEH KUSTOMIZE
