@@ -7,7 +7,7 @@ bases:
   - httpd
 
 configMapGenerator:
-  - name: nginx-index-html
+  - name: nginx-index
     files:
       - nginx/index.html
   - name: httpd-index-html
